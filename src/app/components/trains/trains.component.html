@@ -1,0 +1,23 @@
+<h2>Trains</h2>
+<ul class="trains">
+  <li *ngFor="let train of trains"
+      (click)="onSelect(train)"
+      [class.selected]="train === selectedTrain">
+    <span class="id">{{train.numTrain}}</span> {{train.villeDepart}} - {{train.villeArrivee}}
+    <span class="time">{{train.heureDepart}}</span>
+  </li>
+</ul>
+
+<div>
+  <button (click)="newTrain = true">Add a train</button>
+</div>
+
+<div *ngIf="newTrain">
+  <app-new-train-form></app-new-train-form>
+</div>
+
+<div *ngIf="selectedTrain">
+  <h3>
+    {{selectedTrain.villeDepart}} - {{selectedTrain.villeArrivee}}
+  </h3>
+</div>

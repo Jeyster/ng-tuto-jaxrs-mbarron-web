@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {TrainService} from '../train.service';
-import {Train} from '../train';
+import {TrainService} from '../../services/train.service';
+import {Train} from '../../interfaces/train';
 
 @Component({
   selector: 'app-trains',
@@ -9,6 +9,8 @@ import {Train} from '../train';
 })
 export class TrainsComponent implements OnInit {
   trains: Train[] = [];
+  selectedTrain: Train;
+  newTrain: boolean = false;
 
   constructor(private trainService: TrainService) {}
 
@@ -20,4 +22,9 @@ export class TrainsComponent implements OnInit {
   ngOnInit(): void {
     this.getTrains();
   }
+
+  onSelect(train: Train): void {
+    this.selectedTrain = train;
+  }
+
 }
