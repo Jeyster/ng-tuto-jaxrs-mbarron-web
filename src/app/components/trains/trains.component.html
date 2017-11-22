@@ -9,11 +9,11 @@
 </ul>
 
 <div>
-  <button (click)="newTrain = true">Add a train</button>
+  <button (click)="displayNewTrainForm()">Add a train</button>
 </div>
 
-<div *ngIf="newTrain">
-  <app-new-train-form></app-new-train-form>
+<div *ngIf="isNewTrain">
+  <app-new-train-form [notSubmitted]="isNewTrain" (submitChange)="mySubmitValueChange($event)"></app-new-train-form>
 </div>
 
 <div *ngIf="selectedTrain">

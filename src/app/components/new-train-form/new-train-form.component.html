@@ -1,6 +1,6 @@
-<div class="container" [hidden]="submitted">
+<div class="container" [hidden]="!notSubmitted">
   <h1>New Train</h1>
-  <form (ngSubmit)="onSubmit()" #trainForm="ngForm">
+  <form (ngSubmit)="onSubmit()" #trainForm="ngForm" name="trainForm">
     <div class="form-group">
       <label for="villeDepart">Departure</label>
       <input type="text" class="form-control" id="villeDepart" required
@@ -35,7 +35,7 @@
     </div>
 
     <button type="submit" class="btn btn-success"
-            [disabled]="!heroForm.form.valid">Submit</button>
+            [disabled]="!trainForm.form.valid">Submit</button>
 
   </form>
 </div>

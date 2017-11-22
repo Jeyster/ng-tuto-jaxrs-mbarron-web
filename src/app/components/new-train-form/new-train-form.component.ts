@@ -1,6 +1,7 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Train} from '../../interfaces/train';
 import {TrainService} from '../../services/train.service';
+import {TrainsComponent} from '../trains/trains.component';
 
 @Component({
   selector: 'app-new-train-form',
@@ -9,14 +10,15 @@ import {TrainService} from '../../services/train.service';
 })
 export class NewTrainFormComponent implements OnInit {
   newTrain: Train;
-  submitted = false;
+  @Input() notSubmitted: boolean;
   @Output() eventEmitter: EventEmitter<Train> = new EventEmitter();
+  @Output() submitChange = new EventEmitter();
 
-  constructor(public service: TrainService){ }
+
+  constructor(public service: TrainService, public trainComponent: TrainsComponent) { }
 
   ngOnInit() {
     this.newTrain =  {
-      numTrain: 0,
       villeDepart: '',
       villeArrivee: '',
       heureDepart: 0
@@ -24,10 +26,9 @@ export class NewTrainFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submitted = true;
+    this.notSubmitted = false;
+    this.submitChange.emit({value: this.notSubmitted});
     this.service.createTrain(this.newTrain)
       .subscribe(response => this.eventEmitter.emit(this.newTrain));
   }
-
-
 }

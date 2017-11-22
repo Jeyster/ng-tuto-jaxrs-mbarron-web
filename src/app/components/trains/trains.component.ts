@@ -10,7 +10,7 @@ import {Train} from '../../interfaces/train';
 export class TrainsComponent implements OnInit {
   trains: Train[] = [];
   selectedTrain: Train;
-  newTrain: boolean = false;
+  isNewTrain: boolean;
 
   constructor(private trainService: TrainService) {}
 
@@ -25,6 +25,15 @@ export class TrainsComponent implements OnInit {
 
   onSelect(train: Train): void {
     this.selectedTrain = train;
+  }
+
+  displayNewTrainForm(): void {
+    this.isNewTrain = true;
+  }
+
+  mySubmitValueChange(event) {
+    this.isNewTrain = event.value;
+    this.getTrains();
   }
 
 }

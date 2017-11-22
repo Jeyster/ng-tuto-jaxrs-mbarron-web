@@ -1,7 +1,6 @@
 export interface Train {
-  numTrain: number;
+  numTrain?: number;
   villeDepart: string;
   villeArrivee: string;
   heureDepart: number;
-  
 }
